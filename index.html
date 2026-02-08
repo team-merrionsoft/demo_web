@@ -200,6 +200,14 @@
 .animate-fadeIn {
     animation: fadeIn 0.35s ease-out;
 }
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
     </style>
 </head>
 <body class="gradient-bg text-white overflow-x-hidden">
@@ -231,12 +239,12 @@
                 </div>
                 
                <div class="flex items-center space-x-4">
-               <button onclick="goDashboard()" class="btn-secondary px-6 py-2 rounded-full text-white hidden sm:block">
-                  Login
+               <button  class="btn-secondary px-6 py-2 rounded-full text-white hidden sm:block">
+                  Sign Up
                </button>
 
-    <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
-        Sign Up
+    <button onclick="goDashboard()" class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
+        Login
     </button>
 </div>
 
@@ -271,14 +279,15 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                    <button class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center gap-2">
-                        <i data-lucide="wallet" class="w-5 h-5"></i>
-                        Start Earning
+                   <button onclick="openAuthModal()" class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center gap-2">
+                   <i data-lucide="wallet" class="w-5 h-5"></i>
+                      Start Earning
                     </button>
-                    <button class="btn-secondary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center gap-2">
-                        <i data-lucide="play-circle" class="w-5 h-5"></i>
-                        See How It Works
-                    </button>
+                    <button  onclick="document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })"
+                     class="btn-secondary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center gap-2">
+                      <i data-lucide="play-circle" class="w-5 h-5"></i>
+                    See How It Works
+                   </button>
                 </div>
 
                 <div class="flex flex-wrap gap-6 text-sm text-gray-400">
@@ -350,10 +359,10 @@
                         </div>
                     </div>
 
-                    <button class="w-full mt-6 btn-primary py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
-                        <i data-lucide="check-circle" class="w-5 h-5"></i>
-                        Complete Tasks Now
-                    </button>
+                    <button onclick="openAuthModal()" class="w-full mt-6 btn-primary py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
+                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    Complete Tasks Now
+                   </button>
                 </div>
 
                 <!-- FLOATING INFO -->
@@ -401,7 +410,7 @@
         <!-- Facebook Signup -->
         <button
             class="w-full flex items-center justify-center gap-3 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition mb-6">
-            <img src="https://www.svgrepo.com/show/475647/facebook.svg" class="w-5 h-5">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-5 h-5" alt="Facebook logo">
             Continue with Facebook
         </button>
 
@@ -788,10 +797,10 @@
                     সহজ কাজ করে আজই আয় শুরু করুন।
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center space-x-2">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i>
-                        <span>সাইন আপ করুন</span>
-                    </button>
+                    <button onclick="openAuthModal()" class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center space-x-2">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                   <span>সাইন আপ করুন</span>
+                   </button>
                     <button class="btn-secondary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center space-x-2">
                         <i data-lucide="message-circle" class="w-5 h-5"></i>
                         <span>সাপোর্টের সাথে যোগাযোগ</span>
@@ -1034,6 +1043,31 @@
   function goDashboard() {
         window.location.href = "/dashboard.html";
     }
+
+function openAuthModal() {
+        const modal = document.getElementById('authModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeAuthModal() {
+        const modal = document.getElementById('authModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // Modal-er baire click korle jeno bondho hoye jay (Optional but pro tip)
+    window.onclick = function(event) {
+        const modal = document.getElementById('authModal');
+        if (event.target == modal) {
+            closeAuthModal();
+        }
+    }
+    function openAuthModal() {
+    const modal = document.getElementById('authModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
 
     </script>
 </body>
